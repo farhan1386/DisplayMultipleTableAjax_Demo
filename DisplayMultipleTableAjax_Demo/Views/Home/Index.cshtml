@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<link href="@Url.Content("~/Content/DataTables/css/dataTables.bootstrap4.min.css")" rel="stylesheet" />
+
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="pill" href="#home">Customers</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#menu1">Products</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#menu2">Order</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#menu3">Order Items</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane container active p-0" id="home" style="margin-top:15px;">
+        <table id="cutomerTable" class="table table-bordered">
+            <thead class="thead-dark text-white">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="tab-pane container p-0" id="menu1" style="margin-top:15px;">
+        <table id="productTable" class="table table-bordered" style="width:100%;">
+            <thead class="thead-dark text-white">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Supplier Id</th>
+                    <th>Unit Price</th>
+                    <th>Package</th>
+                    <th>Is Discontinued</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="tab-pane container fade p-0" id="menu2" style="margin-top:15px;">
+        <table id="orderTable" class="table table-bordered" style="width:100%;">
+            <thead class="thead-dark text-white">
+                <tr>
+                    <th>Order Date</th>
+                    <th>Order Number</th>
+                    <th>Customer Id</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="tab-pane container fade p-0" id="menu3" style="margin-top:15px;">
+        <table id="orderItemTable" class="table table-bordered" style="width:100%;">
+            <thead class="thead-dark text-white">
+                <tr>
+                    <th>Order Id</th>
+                    <th>Product Id</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+<script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap4.min.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#cutomerTable").DataTable({
+            "ajax": {
+                "url": "@Url.Action("GetCustomers", "Home")",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "FirstName" },
+                { "data": "LastName" },
+                { "data": "City" },
+                { "data": "Country" },
+                { "data": "Phone" }
+            ]
+        });
+        //Product Table 
+        $("#productTable").DataTable({
+            "ajax": {
+                "url": "@Url.Action("GetProducts", "Home")",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "ProductName" },
+                { "data": "SupplierId" },
+                { "data": "UnitPrice" },
+                { "data": "Package" },
+                { "data": "IsDiscontinued" },
+            ]
+        });
+        //Order Table 
+        $("#orderTable").DataTable({
+            "ajax": {
+                "url": "@Url.Action("GetOrders", "Home")",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "OrderDate" },
+                { "data": "OrderNumber" },
+                { "data": "CustomerId" },
+                { "data": "TotalAmount" }
+            ]
+        });
+        //Order Item
+        $("#orderItemTable").DataTable({
+            "ajax": {
+                "url": "@Url.Action("GetOrderItem", "Home")",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "OrderId" },
+                { "data": "ProductId" },
+                { "data": "UnitPrice" },
+                { "data": "Quantity" }
+            ]
+        });
+    });
+</script>

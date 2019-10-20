@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="633ec4117112487e9e68b7cc1c4c90ae" Name="Diagram1">
+        <EntityTypeShape EntityType="SampleDBModel.Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.OrderItem" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.Product" Width="1.5" PointX="0.875" PointY="4.125" />
+        <AssociationConnector Association="SampleDBModel.FK_ORDERITE_REFERENCE_PRODUCT" />
+        <EntityTypeShape EntityType="SampleDBModel.Order" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="SampleDBModel.FK_ORDER_REFERENCE_CUSTOMER" />
+        <AssociationConnector Association="SampleDBModel.FK_ORDERITE_REFERENCE_ORDER" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
